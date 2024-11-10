@@ -1,36 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts-depl
+  name: event-bus-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: posts
+      app: event-bus
   template:
     metadata:
       labels:
-        app: posts
+        app: event-bus
     spec:
       containers:
-      - name: posts
-        image: brokidev/posts
+      - name: event-bus
+        image: brokidev/event-bus
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 3000
+        - containerPort: 3005
+      imagePullSecrets:
+        - name: my-docker-registry
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: posts-cluster-ip-srv
+  name: event-bus-srv
 spec:
   selector:
-    app: posts
+    app: event-bus
   ports:
-    - name: posts
+    - name: event-bus
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 3005
+      targetPort: 3005
