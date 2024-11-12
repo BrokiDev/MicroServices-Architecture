@@ -29,7 +29,7 @@ app.get('/posts',(req:Request,res:Response) => {
     })
 })
 
-app.post('/posts',async (req,res) => {
+app.post('/posts',async (req:Request,res:Response) => {
     const id = randomBytes(4).toString('hex');
     const {title} = req.body
 
@@ -51,7 +51,7 @@ app.post('/posts',async (req,res) => {
     })
 })
 
-app.post('/events',(req,res) => {
+app.post('/events',(req:Request,res:Response) => {
     console.log('Event Received:',req.body.type);
 
     res.send({});

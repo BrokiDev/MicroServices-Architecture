@@ -15,12 +15,10 @@ spec:
       containers:
       - name: posts
         image: brokidev/posts
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 3000
+      imagePullSecrets:
+      - name: personal-docker-registry
 ---
 apiVersion: v1
 kind: Service

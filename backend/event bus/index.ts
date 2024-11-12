@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import axios from "axios";
 import express from "express";
 
@@ -11,7 +12,7 @@ const PORT = 3005;
 app.use(express.json());
 
 
-app.post('/events', async (req,res) => {
+app.post('/events', async (req:Request,res:Response) => {
     events.push(req.body);
 
     await axios.post('http://posts-cluster-ip-srv:3000/events',req.body)
@@ -23,7 +24,7 @@ app.post('/events', async (req,res) => {
 })
 
 
-app.get('/events',(req,res) => {
+app.get('/events',(req:Request,res:Response) => {
     res.send(events);
 })
 
