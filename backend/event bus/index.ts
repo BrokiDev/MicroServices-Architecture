@@ -16,9 +16,9 @@ app.post('/events', async (req:Request,res:Response) => {
     events.push(req.body);
 
     await axios.post('http://posts-cluster-ip-srv:3000/events',req.body)
-    // await axios.post('http://localhost:3001/events',req.body)
-    // await axios.post('http://localhost:3002/events',req.body).catch((err) => console.log('Error conectando al query services'));
-    // await axios.post('http://localhost:3003/events',req.body)
+    await axios.post('http://comments-cluster-ip-srv:3001/events',req.body)
+    await axios.post('http://query-cluster-ip-srv:3002/events',req.body).catch((err) => console.log('Error conectando al query services'));
+    await axios.post('http://moderation-cluster-ip-srv:3003/events',req.body)
 
     res.send({status: 'OK'})
 })

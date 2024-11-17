@@ -31,7 +31,7 @@ app.post('/events', async (req,res) => {
             return;
         })
 
-        await axios.post('http://localhost:3005/events', {
+        await axios.post('http://event-bus-srv:3005/events', {
             type: 'CommentModerated',
             data: commentModerated
         })
