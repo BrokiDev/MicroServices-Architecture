@@ -20,16 +20,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
-app.get('/posts',(req:Request,res:Response) => {
-    res.status(200).json({
-        status:'success',
-        message:'Data Retrieved Successfully',
-        data:posts
-    })
-})
-
-app.post('/posts',async (req:Request,res:Response) => {
+app.post('/posts/create',async (req:Request,res:Response) => {
     const id = randomBytes(4).toString('hex');
     const {title} = req.body
 
